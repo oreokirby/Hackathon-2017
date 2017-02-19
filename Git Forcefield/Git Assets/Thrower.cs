@@ -20,17 +20,17 @@ public class Thrower : MonoBehaviour {
 
 		if (Fields < 3) {
 
-			if ((Input.GetKeyDown (KeyCode.UpArrow)) || (Input.GetKeyDown ("joystick button 0"))) {
+			if ((Input.GetKeyDown (KeyCode.LeftArrow)) || (Input.GetKeyDown ("joystick button 0"))) {
 				Instantiate (left, new Vector3 (transform.position.x - 0.6f, transform.position.y, transform.position.z), Quaternion.Euler (0, 0, 90));
 				Fields++;
 			}
 			//if ((Input.GetKeyDown (KeyCode.Space)) || (Input.GetKeyDown ("joystick button 1")))
 				//Debug.Log ("1");
-			if ((Input.GetKeyDown (KeyCode.LeftArrow)) || (Input.GetKeyDown ("joystick button 2"))) {
+			if ((Input.GetKeyDown (KeyCode.RightArrow)) || (Input.GetKeyDown ("joystick button 2"))) {
 				Instantiate (right, new Vector3 (transform.position.x + 0.6f, transform.position.y, transform.position.z), Quaternion.Euler (0, 0, 90));
 				Fields++;
 			}
-			if ((Input.GetKeyDown (KeyCode.RightArrow)) || (Input.GetKeyDown ("joystick button 3"))) { 
+			if ((Input.GetKeyDown (KeyCode.UpArrow)) || (Input.GetKeyDown ("joystick button 3"))) { 
 				Instantiate (up, new Vector3 (transform.position.x, transform.position.y + 0.6f, transform.position.z), Quaternion.Euler (0, 0, 0));
 				Fields++;
 			}
@@ -47,24 +47,6 @@ public class Thrower : MonoBehaviour {
 
 		}
 
-		Debug.Log ("Forcefields: " + Fields);
-	}
-
-	void OnGUI() {
-		if (Event.current.Equals (Event.KeyboardEvent ("up"))) {
-			Instantiate (up, new Vector3 (transform.position.x, transform.position.y + 0.6f, transform.position.z), Quaternion.Euler (0, 0, 0));
-			Fields++;
-		}
-	
-		if (Event.current.Equals (Event.KeyboardEvent ("left"))) {
-			Instantiate (left, new Vector3 (transform.position.x - 0.6f, transform.position.y, transform.position.z), Quaternion.Euler (0, 0, 90));
-			Fields++;
-		}
-
-		if (Event.current.Equals (Event.KeyboardEvent ("right"))) {
-			Instantiate (right, new Vector3 (transform.position.x + 0.6f, transform.position.y, transform.position.z), Quaternion.Euler (0, 0, 90));
-			Fields++;
-		}
-			
+		//Debug.Log ("Forcefields: " + Fields);
 	}
 }

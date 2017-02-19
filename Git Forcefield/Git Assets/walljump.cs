@@ -68,7 +68,7 @@ public class walljump : MonoBehaviour {
 	{
 		if(!controller.isGrounded && hit.normal.y < 0.1f && (!(hit.gameObject.tag == "Wall")))
 		{
-
+			if ((hit.gameObject.tag != "Wall") || (hit.gameObject.tag != "Forcefield"))
 			Instantiate(dust, transform.position, Quaternion.identity);
 
 			if((Input.GetKeyDown (KeyCode.Space)) || (Input.GetKeyDown ("joystick button 1")))
