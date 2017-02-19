@@ -5,14 +5,16 @@ public class walljump : MonoBehaviour {
 
 	private Vector3 moveVector;
 	private Vector3 lastMove;
-	private float speed = 8;
-	public float jumpforce = 12;
+	public float speed = 10;
+	public float jumpforce = 15;
 	public float gravity = 25;
 	public float senseH = 9.0f;
 	private float yaw = 0.0f;
 	private float pitch = 0.0f;
 	private float verticalVelocity;
 	private CharacterController controller;
+
+	public Transform dust;
 
 	// Use this for initialization
 	void Start () {
@@ -21,8 +23,6 @@ public class walljump : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-
-		GameObject foodObject = GameObject.FindGameObjectWithTag("Wall");
 
 		// Point the object in the direction of the mouse
 		//transform.Rotate(0, Input.GetAxis ("Mouse X") * senseH, 0);
@@ -39,8 +39,11 @@ public class walljump : MonoBehaviour {
 		if (controller.isGrounded) {
 			verticalVelocity = -1;
 
-			if (Input.GetKeyDown (KeyCode.Space)) {
+			if ((Input.GetKeyDown (KeyCode.Space)) || (Input.GetKeyDown ("joystick button 1"))) {
 				verticalVelocity = jumpforce;
+
+				//if (InputManager.AButton ())
+				//	verticalVelocity = jumpforce;
 			}
 		}
 
@@ -65,9 +68,12 @@ public class walljump : MonoBehaviour {
 	{
 		if(!controller.isGrounded && hit.normal.y < 0.1f && (!(hit.gameObject.tag == "Wall")))
 		{
-			if(Input.GetKeyDown (KeyCode.Space))
+
+			Instantiate(dust, transform.position, Quaternion.identity);
+
+			if((Input.GetKeyDown (KeyCode.Space)) || (Input.GetKeyDown ("joystick button 1")))
 			{
-				Debug.DrawRay(hit.point,hit.normal,Color.red,10.25f);
+				//Debug.DrawRay(hit.point,hit.normal,Color.red,10.25f);
 				verticalVelocity = jumpforce;
 				moveVector = hit.normal * speed;
 			}
